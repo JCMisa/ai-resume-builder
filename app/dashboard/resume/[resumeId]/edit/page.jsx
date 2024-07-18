@@ -1,12 +1,29 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import FormSection from "./_components/FormSection";
+import ResumePreview from "./_components/ResumePreview";
+import { ResumeInfoContext } from "@/context/ResumeInfoContext";
+import { dummy } from "@/data/dummy";
 
 const EditResume = ({ params }) => {
+  const [resumeInfo, setResumeInfo] = useState();
+
   useEffect(() => {
-    console.log(params);
+    setResumeInfo(dummy);
   }, []);
-  return <div>EditResume</div>;
+
+  return (
+    <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
+      <div className="flex flex-col sm:flex-row p-10 gap-10">
+        {/* form section */}
+        <FormSection />
+
+        {/* preview section */}
+        <ResumePreview />
+      </div>
+    </ResumeInfoContext.Provider>
+  );
 };
 
 export default EditResume;
