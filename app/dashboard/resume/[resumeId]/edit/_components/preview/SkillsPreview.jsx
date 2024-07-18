@@ -13,14 +13,27 @@ const SkillsPreview = ({ resumeInfo }) => {
           >
             SKILLS
           </h2>
-          {resumeInfo?.skills.map((skill) => (
-            <h2
-              key={skill.id}
-              className="text-center font-normal text-xs flex justify-start items-center gap-2"
-            >
-              <Dot /> {skill.name} --- {skill.rating}%
-            </h2>
-          ))}
+          <div className="">
+            {resumeInfo?.skills.map((skill) => (
+              <div
+                key={skill.id}
+                className="text-xs flex justify-between items-center gap-2"
+              >
+                <p className="flex items-center">
+                  <Dot /> {skill.name}
+                </p>
+                <div className="h-2 bg-gray-200 w-[120px]">
+                  <div
+                    className="h-2"
+                    style={{
+                      backgroundColor: resumeInfo?.themeColor,
+                      width: skill.rating + "%",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

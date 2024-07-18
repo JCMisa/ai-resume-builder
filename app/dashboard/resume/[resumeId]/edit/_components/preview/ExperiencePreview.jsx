@@ -14,22 +14,25 @@ const ExperiencePreview = ({ resumeInfo }) => {
             WORK EXPERIENCE
           </h2>
 
-          {resumeInfo?.experiences.map((exp) => (
-            <h2
+          {resumeInfo?.experience.map((exp, index) => (
+            <div
               key={exp.id}
-              className="text-start font-normal text-xs flex flex-col justify-start items-start gap-2"
+              className={`text-start font-normal text-xs flex flex-col justify-start items-start gap-2 ${
+                index !== 0 ? "mt-5" : "mt-2"
+              }`}
             >
               <h2 className="text-xs font-bold">{exp?.title}</h2>
               <div className="flex justify-between gap-52">
                 <h2 className="text-xs font-normal">{exp?.companyName}</h2>
                 <h2 className="text-xs font-normal">
-                  {exp?.startDate} - {exp?.endDate}
+                  {exp?.startDate} -{" "}
+                  {exp.currentlyWorking ? "PRESENT" : exp.endDate}
                 </h2>
               </div>
               <div className="text-start items-center text-xs flex justify-between gap-2">
                 - {exp?.workSummary}
               </div>
-            </h2>
+            </div>
           ))}
         </div>
       </div>

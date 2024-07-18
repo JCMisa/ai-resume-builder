@@ -9,7 +9,7 @@ export const dummy = {
   themeColor: "#ff6666",
   summary:
     "Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs Lorem Ipsum is Lorem Ipsum but I don't think it works well enough for my purposes and needs.",
-  experiences: [
+  experience: [
     {
       id: 1,
       title: "Full Stack Developer",
@@ -17,7 +17,7 @@ export const dummy = {
       city: "San Pablo",
       state: "Laguna",
       startDate: "Jan 2021",
-      endDate: "Mar 2024",
+      endDate: "",
       currentlyWorking: true,
       workSummary:
         "lorem Ipsum is Lorem Ipsum but was popular popularised in the 1960s and then popularised to become popular in the 2000s. Lorem Ipsum is also known as the canonical character connected to the body of the word. Lorem Ipsum is also known as the canonical character connected to the word. Lorem Ipsum is also known as the canonical character connected to the word. Lorem Ipsum is also known as the canonical character connected to the word. Lorem Ipsum is also known as the canonical character connected to the",
@@ -53,7 +53,7 @@ export const dummy = {
       universityName: "University of Washington",
       startDate: "Aug 2018",
       endDate: "Dec 2019",
-      degree: "Master in Computer Science",
+      degree: "Master",
       major: "Computer Science",
       description:
         "Lorem Ipsum is simply dummy information regarding the role of the computer science system. Lorem Ipsum is a computer science system that provides information about the computer science system",
@@ -63,7 +63,7 @@ export const dummy = {
       universityName: "University of Technology and Technology",
       startDate: "Aug 2010",
       endDate: "Dec 2017",
-      degree: "Bachelors in Computer Science",
+      degree: "Bachelor",
       major: "Computer Science",
       description:
         "Lorem Ipsum is simply dummy information regarding the role of the computer science system. Lorem Ipsum is a computer science system that provides information about the computer science system",
@@ -73,8 +73,8 @@ export const dummy = {
       universityName: "University of Nurse Research and Development",
       startDate: "Aug 2000",
       endDate: "Dec 2009",
-      degree: "High School",
-      major: "Accountancy Business and Management",
+      degree: "Bachelor",
+      major: "Accountancy",
       description:
         "Lorem Ipsum is simply dummy information regarding the role of the computer science system. Lorem Ipsum is a computer science system that provides information about the computer science system",
     },
@@ -88,12 +88,17 @@ export const dummy = {
     {
       id: 2,
       name: ".NetCore",
-      rating: 60,
+      rating: 80,
     },
     {
       id: 3,
       name: "SpringBoot",
       rating: 90,
+    },
+    {
+      id: 4,
+      name: "PHP",
+      rating: 60,
     },
   ],
   //   softSkills: [

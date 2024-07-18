@@ -13,9 +13,14 @@ const EducationPreview = ({ resumeInfo }) => {
           >
             EDUCATION
           </h2>
-          {resumeInfo?.education.map((educ) => (
-            <div key={educ?.id} className="flex flex-col gap-2">
-              <h2 className="font-bold text-xs">{educ?.degree}</h2>
+          {resumeInfo?.education.map((educ, index) => (
+            <div
+              key={educ?.id}
+              className={`flex flex-col gap-2 ${index !== 0 ? "mt-5" : ""}`}
+            >
+              <h2 className="font-bold text-xs">
+                {educ?.degree} in {educ?.major}
+              </h2>
               <h2 className="font-bold text-md">{educ?.universityName}</h2>
               <h2 className="text-xs">
                 {educ?.startDate} - {educ?.endDate}
