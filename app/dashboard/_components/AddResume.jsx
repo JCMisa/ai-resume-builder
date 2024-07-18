@@ -1,6 +1,6 @@
 "use client";
 
-import { PlusSquare } from "lucide-react";
+import { Loader2, PlusSquare } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -16,39 +16,50 @@ import { db } from "@/utils/db";
 import { UserResume } from "@/utils/schema";
 import { useUser } from "@clerk/clerk-react";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 const AddResume = () => {
   const { user } = useUser();
+  const router = useRouter();
 
   const [openDialog, setOpenDialog] = useState(false);
   const [resumeTitle, setResumeTitle] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onCreate = async () => {
-    console.log(user);
+    try {
+      setLoading(true);
+      const resp = await db
+        .insert(UserResume)
+        .values({
+          resumeId: uuidv4(),
+          title: resumeTitle,
+          userEmail: user?.primaryEmailAddress?.emailAddress,
+          userName: user?.fullName,
+          createdAt: moment().format("DD-MM-yyyy"),
+        })
+        .returning({ resumeId: UserResume.resumeId });
 
-    // const resp = await db
-    //   .insert(UserResume)
-    //   .values({
-    //     resumeId: uuidv4(),
-    //     title: resumeTitle,
-    //     userEmail: user?.primaryEmailAddress?.emailAddress,
-    //     userName: user?.fullName,
-    //     createdAt: moment().format("DD-MM-yyyy"),
-    //   })
-    //   .returning({ resumeId: UserResume.resumeId });
+      console.log("Inserted Resume ID: ", resp);
 
-    // console.log("Inserted ID: ", resp);
-
-    // if (resp) {
-    //   setOpenDialog(false);
-    //   router.push(`/dashboard/interview/${resp[0]?.mockId}`);
-    // }
+      if (resp) {
+        setOpenDialog(false);
+        setLoading(false);
+        router.push(`/dashboard/resume/${resp[0]?.resumeId}/edit`);
+      }
+    } catch (error) {
+      console.error("Error creating resume: ", error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+      setOpenDialog(false);
+    }
   };
 
   return (
     <div>
       <div
-        className="p-14 py-24 border items-center flex justify-center bg-gray-300 rounded-lg mt-10 min-h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer border-dashed"
+        className="p-14 py-24 border items-center flex justify-center bg-gray-300 rounded-lg mt-10 min-h-[280px] max-h-[280px] sm:min-w-[220px] sm:max-w-[220px] min-w-full hover:scale-105 transition-all hover:shadow-md cursor-pointer border-dashed"
         onClick={() => setOpenDialog(true)}
       >
         <PlusSquare />
@@ -71,8 +82,11 @@ const AddResume = () => {
               <Button onClick={() => setOpenDialog(false)} variant="ghost">
                 Cancel
               </Button>
-              <Button disabled={!resumeTitle} onClick={() => onCreate()}>
-                Create
+              <Button
+                disabled={!resumeTitle || loading}
+                onClick={() => onCreate()}
+              >
+                {loading ? <Loader2 className="animate-spin" /> : "Create"}
               </Button>
             </div>
           </DialogHeader>
