@@ -3,8 +3,9 @@ import PersonalDetail from "./forms/PersonalDetail";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
 
-const FormSection = () => {
+const FormSection = ({ resumeId }) => {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
+  const [enableNext, setEnableNext] = useState(false);
 
   return (
     <div className="min-w-[30%]">
@@ -24,6 +25,7 @@ const FormSection = () => {
             </Button>
           )}
           <Button
+            disabled={!enableNext} // only enable next button if the form is saved
             className="flex gap-2"
             size="sm"
             onClick={() => setActiveFormIndex(activeFormIndex + 1)}
@@ -34,7 +36,12 @@ const FormSection = () => {
         </div>
       </div>
       {/* Personal Detail */}
-      {activeFormIndex === 1 ? <PersonalDetail /> : null}
+      {activeFormIndex === 1 ? (
+        <PersonalDetail
+          resumeId={resumeId}
+          enableNext={(v) => setEnableNext(v)}
+        /> // pass the enableNext state to this component as props
+      ) : null}
 
       {/* summary */}
 

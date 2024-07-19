@@ -17,7 +17,7 @@ const EditResume = ({ params }) => {
     <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div className="flex flex-col sm:flex-row p-10 gap-10">
         {/* form section */}
-        <FormSection />
+        <FormSection resumeId={params.resumeId} />
 
         {/* preview section */}
         <ResumePreview />

@@ -8,4 +8,10 @@ export const UserResume = pgTable("userResume", {
   userName: varchar("userName").notNull(),
   createdAt: varchar("createdAt").notNull(),
   resumeId: varchar("resumeId").notNull(),
+  firstName: varchar("firstName"),
+  lastName: varchar("lastName"),
+  address: varchar("address"),
+  jobTitle: varchar("jobTitle"),
+  phone: varchar("phone"),
+  email: varchar("email"),
 });
