@@ -6,6 +6,7 @@ import { UserResume } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 import { LoaderCircle } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const PersonalDetail = ({ resumeId, enableNext }) => {
   // resumeId is the id at the params of /dashboard/resume passed as props
@@ -19,6 +20,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
     jobTitle: "",
     phone: "",
     email: "",
+    website: "",
   });
 
   const handleInputChange = (e) => {
@@ -79,6 +81,11 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
         .set({ email: formData?.email })
         .where(eq(UserResume?.resumeId, resumeId));
 
+      const websiteUpd = await db
+        .update(UserResume)
+        .set({ website: formData?.website })
+        .where(eq(UserResume?.resumeId, resumeId));
+
       console.log(
         "updated resume: ",
         firstNameUpd,
@@ -86,11 +93,15 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
         addressUpd,
         jobTitleUpd,
         phoneUpd,
-        emailUpd
+        emailUpd,
+        websiteUpd
       );
+
       setLoading(false);
       enableNext(true); // if the form is saved, then enable the next button
+      toast("Personal Details Updated Successfully");
     } catch (error) {
+      toast("Error occured while updating personal details");
       console.log("Error updating resume: ", error);
     }
   };
@@ -104,29 +115,76 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
         <div className="grid grid-cols-2 mt-5 gap-3">
           <div>
             <label className="text-sm">First Name</label>
-            <Input name="firstName" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.firstName}
+              name="firstName"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
           <div>
             <label className="text-sm">Last Name</label>
-            <Input name="lastName" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.lastName}
+              name="lastName"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
 
           <div className="col-span-2">
             <label className="text-sm">Job Title</label>
-            <Input name="jobTitle" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.jobTitle}
+              name="jobTitle"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
           <div className="col-span-2">
             <label className="text-sm">Address</label>
-            <Input name="address" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.address}
+              name="address"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
 
           <div>
             <label className="text-sm">Phone</label>
-            <Input name="phone" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.phone}
+              name="phone"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
           <div>
             <label className="text-sm">Email</label>
-            <Input name="email" onChange={handleInputChange} required />
+            <Input
+              defaultValue={resumeInfo?.email}
+              name="email"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className="text-sm">Website Link</label>
+            <Input
+              defaultValue={resumeInfo?.website}
+              name="website"
+              onChange={handleInputChange}
+              required
+              className="border-gray-500"
+            />
           </div>
         </div>
 

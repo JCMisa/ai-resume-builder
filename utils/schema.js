@@ -14,4 +14,5 @@ export const UserResume = pgTable("userResume", {
   jobTitle: varchar("jobTitle"),
   phone: varchar("phone"),
   email: varchar("email"),
+  website: varchar("website"),
 });

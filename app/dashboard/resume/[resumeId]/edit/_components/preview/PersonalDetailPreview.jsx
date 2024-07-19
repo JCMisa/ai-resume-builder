@@ -23,7 +23,7 @@ const PersonalDetailPreview = ({ resumeInfo }) => {
             <Globe width={14} height={14} /> {resumeInfo?.website}
           </h2>
           <h2 className="text-start font-normal text-xs flex justify-start items-center gap-2">
-            <MapPin width={24} height={24} /> {resumeInfo?.address}
+            <MapPin width={14} height={14} /> {resumeInfo?.address}
           </h2>
         </div>
       </div>
