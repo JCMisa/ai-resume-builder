@@ -102,6 +102,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
       toast("Personal Details Updated Successfully");
     } catch (error) {
       toast("Error occured while updating personal details");
+      setLoading(false);
       console.log("Error updating resume: ", error);
     }
   };
@@ -109,7 +110,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
   return (
     <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
       <h2 className="font-bold text-lg">Personal Details</h2>
-      <p>Get started with the basic information</p>
+      <p className="text-sm">Get started with the basic information</p>
 
       <form onSubmit={onSave}>
         <div className="grid grid-cols-2 mt-5 gap-3">

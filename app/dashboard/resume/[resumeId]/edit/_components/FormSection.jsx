@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import PersonalDetail from "./forms/PersonalDetail";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
+import Summary from "./forms/Summary";
 
 const FormSection = ({ resumeId }) => {
-  const [activeFormIndex, setActiveFormIndex] = useState(1);
+  const [activeFormIndex, setActiveFormIndex] = useState(3);
   const [enableNext, setEnableNext] = useState(false);
 
   return (
@@ -44,6 +45,9 @@ const FormSection = ({ resumeId }) => {
       ) : null}
 
       {/* summary */}
+      {activeFormIndex === 2 ? (
+        <Summary resumeId={resumeId} enableNext={(v) => setEnableNext(v)} />
+      ) : null}
 
       {/* skills */}
 

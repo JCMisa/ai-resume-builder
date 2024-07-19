@@ -85,3 +85,15 @@ body::-webkit-scrollbar-thumb {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.summary-textarea::-webkit-scrollbar {
+  width: 3px;
+}
+
+.summary-textarea::-webkit-scrollbar-track {
+  display: none;
+}
+
+.summary-textarea::-webkit-scrollbar-thumb {
+  background: #0c9ecf;
+}
