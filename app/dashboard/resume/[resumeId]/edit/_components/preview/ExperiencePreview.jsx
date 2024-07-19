@@ -16,7 +16,7 @@ const ExperiencePreview = ({ resumeInfo }) => {
 
           {resumeInfo?.experience.map((exp, index) => (
             <div
-              key={exp.id}
+              key={exp.id || index}
               className={`text-start font-normal text-xs flex flex-col justify-start items-start gap-2 ${
                 index !== 0 ? "mt-5" : "mt-2"
               }`}
@@ -29,9 +29,13 @@ const ExperiencePreview = ({ resumeInfo }) => {
                   {exp.currentlyWorking ? "PRESENT" : exp.endDate}
                 </h2>
               </div>
-              <div className="text-start items-center text-xs flex justify-between gap-2">
+              {/* <div className="text-start items-center text-xs flex justify-between gap-2">
                 - {exp?.workSummary}
-              </div>
+              </div> */}
+              <div
+                dangerouslySetInnerHTML={{ __html: exp?.workSummary }}
+                className="text-start items-center text-xs flex justify-between gap-2"
+              />
             </div>
           ))}
         </div>
