@@ -25,8 +25,8 @@ const ExperiencePreview = ({ resumeInfo }) => {
               <div className="flex justify-between gap-52">
                 <h2 className="text-xs font-normal">{exp?.companyName}</h2>
                 <h2 className="text-xs font-normal">
-                  {exp?.startDate} -{" "}
-                  {exp.currentlyWorking ? "PRESENT" : exp.endDate}
+                  ({exp?.startDate}) - (
+                  {exp.currentlyWorking ? "PRESENT" : exp.endDate})
                 </h2>
               </div>
               {/* <div className="text-start items-center text-xs flex justify-between gap-2">

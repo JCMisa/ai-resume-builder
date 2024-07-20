@@ -83,7 +83,7 @@ const Summary = ({ resumeId, enableNext }) => {
 
         <form className="mt-7" onSubmit={onSave}>
           <div className="flex justify-between items-end">
-            <label className="text-xs">Add Summary</label>
+            <label className="text-xs font-bold">Add Summary</label>
             <Button
               variant="outline"
               size="sm"
@@ -123,7 +123,7 @@ const Summary = ({ resumeId, enableNext }) => {
           aiGeneratedSummaryList.map((item, index) => (
             <div key={index}>
               <h2 className="font-bold my-1">Level: {item.experienceLevel}</h2>
-              <p className="text-xs">{item.summary}</p>
+              <p className="text-xs font-bold">{item.summary}</p>
             </div>
           ))}
       </div>

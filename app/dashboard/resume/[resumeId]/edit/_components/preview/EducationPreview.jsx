@@ -19,11 +19,11 @@ const EducationPreview = ({ resumeInfo }) => {
               className={`flex flex-col gap-2 ${index !== 0 ? "mt-5" : ""}`}
             >
               <h2 className="font-bold text-xs">
-                {educ?.degree} in {educ?.major}
+                {educ?.degree} {educ.degree && "in"} {educ?.major}
               </h2>
               <h2 className="font-bold text-md">{educ?.universityName}</h2>
               <h2 className="text-xs">
-                {educ?.startDate} - {educ?.endDate}
+                ({educ?.startDate}) - ({educ?.endDate})
               </h2>
               <h2 className="text-xs">{educ?.description}</h2>
             </div>

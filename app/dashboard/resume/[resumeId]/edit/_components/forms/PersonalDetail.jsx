@@ -117,7 +117,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
       <form onSubmit={onSave}>
         <div className="grid grid-cols-2 mt-5 gap-3">
           <div>
-            <label className="text-sm">First Name</label>
+            <label className="text-xs font-bold">First Name</label>
             <Input
               defaultValue={resumeInfo?.firstName}
               name="firstName"
@@ -127,7 +127,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
             />
           </div>
           <div>
-            <label className="text-sm">Last Name</label>
+            <label className="text-xs font-bold">Last Name</label>
             <Input
               defaultValue={resumeInfo?.lastName}
               name="lastName"
@@ -138,7 +138,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
           </div>
 
           <div className="col-span-2">
-            <label className="text-sm">Job Title</label>
+            <label className="text-xs font-bold">Job Title</label>
             <Input
               defaultValue={resumeInfo?.jobTitle}
               name="jobTitle"
@@ -148,7 +148,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
             />
           </div>
           <div className="col-span-2">
-            <label className="text-sm">Address</label>
+            <label className="text-xs font-bold">Address</label>
             <Input
               defaultValue={resumeInfo?.address}
               name="address"
@@ -159,7 +159,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
           </div>
 
           <div>
-            <label className="text-sm">Phone</label>
+            <label className="text-xs font-bold">Phone</label>
             <Input
               defaultValue={resumeInfo?.phone}
               name="phone"
@@ -169,7 +169,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
             />
           </div>
           <div>
-            <label className="text-sm">Email</label>
+            <label className="text-xs font-bold">Email</label>
             <Input
               defaultValue={resumeInfo?.email}
               name="email"
@@ -180,7 +180,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
           </div>
 
           <div className="col-span-2">
-            <label className="text-sm">Website Link</label>
+            <label className="text-xs font-bold">Website Link</label>
             <Input
               defaultValue={resumeInfo?.website}
               name="website"
