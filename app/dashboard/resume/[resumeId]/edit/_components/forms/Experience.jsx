@@ -23,28 +23,6 @@ const formField = {
   workSummary: "",
 };
 
-// const formField2 = {
-//   //   id: uuidv4(),
-//   title: "",
-//   companyName: "",
-//   city: "",
-//   state: "",
-//   startDate: "",
-//   endDate: "",
-//   workSummary: "",
-// };
-
-// const formField3 = {
-//   //   id: uuidv4(),
-//   title: "",
-//   companyName: "",
-//   city: "",
-//   state: "",
-//   startDate: "",
-//   endDate: "",
-//   workSummary: "",
-// };
-
 const Experience = ({ resumeId, enableNext }) => {
   const [experienceList, setExperienceList] = useState([formField]);
   const [loading, setLoading] = useState(false);
@@ -102,7 +80,7 @@ const Experience = ({ resumeId, enableNext }) => {
     try {
       const resp = await db
         .update(UserResume)
-        .set({ experience: JSON.stringify(experienceList) })
+        .set({ experience: JSON.stringify(experienceList) }) // store it first as string and when you want to access it, JSON.parse it first
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {
@@ -130,6 +108,15 @@ const Experience = ({ resumeId, enableNext }) => {
       setLoading(false);
     }
   };
+
+  const objectOfObjects = experienceList.reduce((acc, object) => {
+    acc[object.title] = object; // Use the desired property (e.g., "id") as the key
+    return acc;
+  }, {});
+
+  // const show = () => {
+  //   console.log(JSON.parse(JSON.stringify(experienceList)));
+  // };
 
   return (
     <div>
@@ -236,8 +223,8 @@ const Experience = ({ resumeId, enableNext }) => {
             {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
           </Button>
         </div>
+        {/* <Button onClick={show}>Show experienceList</Button> */}
       </div>
-      {/* <Button onClick={show}>Show experienceList</Button> */}
     </div>
   );
 };

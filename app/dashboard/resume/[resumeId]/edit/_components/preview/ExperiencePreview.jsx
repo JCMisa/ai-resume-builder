@@ -22,7 +22,7 @@ const ExperiencePreview = ({ resumeInfo }) => {
               }`}
             >
               <h2 className="text-xs font-bold">{exp?.title}</h2>
-              <div className="flex justify-between gap-52">
+              <div className="flex justify-between gap-40">
                 <h2 className="text-xs font-normal">{exp?.companyName}</h2>
                 <h2 className="text-xs font-normal">
                   ({exp?.startDate}) - (

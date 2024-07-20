@@ -5,12 +5,27 @@ import FormSection from "./_components/FormSection";
 import ResumePreview from "./_components/ResumePreview";
 import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 import { dummy } from "@/data/dummy";
+import { toast } from "sonner";
+import { db } from "@/utils/db";
+import { UserResume } from "@/utils/schema";
+import { desc, eq } from "drizzle-orm";
 
 const EditResume = ({ params }) => {
-  const [resumeInfo, setResumeInfo] = useState();
+  const [resumeInfo, setResumeInfo] = useState(dummy);
+  const [loading, setLoading] = useState(false);
+
+  const getResumeInfo = async () => {
+    const resp = await db
+      .select()
+      .from(UserResume)
+      .where(eq(UserResume.resumeId, params.resumeId));
+
+    console.log(resp);
+  };
 
   useEffect(() => {
     setResumeInfo(dummy);
+    getResumeInfo();
   }, []);
 
   return (
@@ -21,6 +36,8 @@ const EditResume = ({ params }) => {
 
         {/* preview section */}
         <ResumePreview />
+
+        {/* <button onClick={getUserResume}>show user resume</button> */}
       </div>
     </ResumeInfoContext.Provider>
   );
