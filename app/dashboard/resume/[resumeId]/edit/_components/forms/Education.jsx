@@ -55,10 +55,11 @@ const Education = ({ resumeId, enableNext }) => {
   const onSave = async () => {
     setLoading(true);
 
+    const stringEducation = JSON.stringify(educationalList);
     try {
       const resp = await db
         .update(UserResume)
-        .set({ education: JSON.stringify(educationalList) })
+        .set({ education: stringEducation })
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {

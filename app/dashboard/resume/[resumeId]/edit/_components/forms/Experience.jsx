@@ -78,9 +78,10 @@ const Experience = ({ resumeId, enableNext }) => {
     setLoading(true);
 
     try {
+      const stringExperience = JSON.stringify(experienceList);
       const resp = await db
         .update(UserResume)
-        .set({ experience: JSON.stringify(experienceList) }) // store it first as string and when you want to access it, JSON.parse it first
+        .set({ experience: stringExperience })
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {
@@ -115,7 +116,10 @@ const Experience = ({ resumeId, enableNext }) => {
   }, {});
 
   // const show = () => {
-  //   console.log(JSON.parse(JSON.stringify(experienceList)));
+  //   // const stringExperience = JSON.stringify(experienceList)
+  //   //   .replace("[", "'[")
+  //   //   .replace("]", "]'");
+  //   console.log(experienceList);
   // };
 
   return (

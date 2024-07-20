@@ -1,5 +1,7 @@
+"use client";
+
 import { Dot } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SkillsPreview = ({ resumeInfo }) => {
   return (
@@ -14,25 +16,26 @@ const SkillsPreview = ({ resumeInfo }) => {
             SKILLS
           </h2>
           <div className="">
-            {resumeInfo?.skills.map((skill) => (
-              <div
-                key={skill.id}
-                className="text-xs flex justify-between items-center gap-2"
-              >
-                <p className="flex items-center">
-                  <Dot /> {skill.name}
-                </p>
-                <div className="h-2 bg-gray-200 w-[120px]">
-                  <div
-                    className="h-2"
-                    style={{
-                      backgroundColor: resumeInfo?.themeColor,
-                      width: skill.rating * 20 + "%", // multiply by 20 because the stars return a value of 1 to 5 only
-                    }}
-                  ></div>
+            {Array.isArray(resumeInfo.skills) &&
+              resumeInfo.skills.map((skill) => (
+                <div
+                  key={skill.id}
+                  className="text-xs flex justify-between items-center gap-2"
+                >
+                  <p className="flex items-center">
+                    <Dot /> {skill.name}
+                  </p>
+                  <div className="h-2 bg-gray-200 w-[120px]">
+                    <div
+                      className="h-2"
+                      style={{
+                        backgroundColor: resumeInfo?.themeColor,
+                        width: skill.rating * 20 + "%", // multiply by 20 because the stars return a value of 1 to 5 only
+                      }}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

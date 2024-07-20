@@ -45,10 +45,11 @@ const Skills = ({ resumeId, enableNext }) => {
   const onSave = async () => {
     setLoading(true);
 
+    const stringSkills = JSON.stringify(skillsList);
     try {
       const resp = await db
         .update(UserResume)
-        .set({ skills: JSON.stringify(skillsList) })
+        .set({ skills: stringSkills })
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {

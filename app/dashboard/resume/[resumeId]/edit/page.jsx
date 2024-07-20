@@ -20,12 +20,12 @@ const EditResume = ({ params }) => {
       .from(UserResume)
       .where(eq(UserResume.resumeId, params.resumeId));
 
-    console.log(resp);
+    console.log("page resume info: ", resp[0]); // get the resp which is the record in the database
   };
 
   useEffect(() => {
     setResumeInfo(dummy);
-    getResumeInfo();
+    resumeInfo && getResumeInfo();
   }, []);
 
   return (

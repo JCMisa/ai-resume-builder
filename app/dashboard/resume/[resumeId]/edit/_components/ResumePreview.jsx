@@ -1,7 +1,7 @@
 "use client";
 
 import { ResumeInfoContext } from "@/context/ResumeInfoContext";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PersonalDetailPreview from "./preview/PersonalDetailPreview";
 import SummaryPreview from "./preview/SummaryPreview";
 import SkillsPreview from "./preview/SkillsPreview";
