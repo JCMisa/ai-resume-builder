@@ -88,7 +88,6 @@ const Experience = ({ resumeId, enableNext }) => {
   //   ----------------------------------------------------------------
 
   useEffect(() => {
-    // console.log(experienceList);
     setResumeInfo({
       ...resumeInfo,
       experience: experienceList,
@@ -100,16 +99,6 @@ const Experience = ({ resumeId, enableNext }) => {
   const onSave = async () => {
     setLoading(true);
 
-    // const aiResp = experienceList.response
-    //   .text()
-    //   .replace("```json", "")
-    //   .replace("```", "");
-
-    // // console.log("Feedback Response: ", JSON.parse(mockJsonResp));
-    // console.log(mockJsonResp);
-
-    // const JsonFeedbackResp = JSON.parse(mockJsonResp);
-
     try {
       const resp = await db
         .update(UserResume)
@@ -117,26 +106,30 @@ const Experience = ({ resumeId, enableNext }) => {
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {
-        toast("Experiences saved successfully");
-        console.log("Added experience: ", resp);
+        toast(
+          <p className="text-xs text-green-500">
+            Experiences saved successfully
+          </p>
+        );
         enableNext(true);
         setLoading(false);
       } else {
-        toast("Failed to save experiences");
+        toast(
+          <p className="text-xs text-red-500">Failed to save experiences</p>
+        );
         setLoading(false);
       }
     } catch (error) {
-      toast("Internal error occured while saving experience");
-      console.log("Saving experience error: ", error);
+      toast(
+        <p className="text-xs text-red-500">
+          Internal error occured while saving experiences
+        </p>
+      );
       setLoading(false);
     } finally {
       setLoading(false);
     }
   };
-
-  // const show = () => {
-  //   console.log("Experience List: ", JSON.stringify(experienceList));
-  // };
 
   return (
     <div>

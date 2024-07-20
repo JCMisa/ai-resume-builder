@@ -48,7 +48,6 @@ const RichTextEditor = ({ onRichTextEditorChange, index }) => {
 
     const resp = result.response.text();
     setValue(resp.replace("[", "").replace("]", ""));
-    console.log("generated summary: ", resp);
     setAiLoading(false);
   };
 

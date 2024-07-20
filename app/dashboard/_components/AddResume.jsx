@@ -40,8 +40,6 @@ const AddResume = () => {
         })
         .returning({ resumeId: UserResume.resumeId });
 
-      console.log("Inserted Resume ID: ", resp);
-
       if (resp) {
         setOpenDialog(false);
         setLoading(false);

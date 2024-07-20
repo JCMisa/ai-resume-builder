@@ -26,12 +26,6 @@ const Summary = ({ resumeId, enableNext }) => {
       });
   }, [summaryInput]);
 
-  //   useEffect(() => {
-  //     resumeInfo?.skills.map((skill) => {
-  //       console.log(skill.name + ", ");
-  //     });
-  //   }, []);
-
   const generateSummaryFromAi = async () => {
     setAiLoading(true);
     const prompt = `Job Title: ${
@@ -43,7 +37,7 @@ const Summary = ({ resumeId, enableNext }) => {
     const result = await chatSession.sendMessage(prompt);
 
     setAiGeneratedSummaryList(JSON.parse([result.response.text()]));
-    console.log("generated summary: ", JSON.parse([result.response.text()]));
+    // console.log("generated summary: ", JSON.parse([result.response.text()]));
     setAiLoading(false);
   };
 
@@ -59,17 +53,28 @@ const Summary = ({ resumeId, enableNext }) => {
 
       if (resp) {
         // if saving the summary in database is successfull
-        toast("Personal summary saved successfully");
+        toast(
+          <p className="text-xs text-green-500">
+            Personal summary saved successfully
+          </p>
+        );
         enableNext(true);
         setLoading(false);
       } else {
-        toast("Failed to save personal summary");
+        toast(
+          <p className="text-xs text-red-500">
+            Failed to save personal summary
+          </p>
+        );
         setLoading(false);
       }
     } catch (error) {
-      toast("Error saving personal summary");
+      toast(
+        <p className="text-xs text-red-500">
+          Internal error occured while saving personal summary
+        </p>
+      );
       setLoading(false);
-      console.log(error);
     }
   };
 

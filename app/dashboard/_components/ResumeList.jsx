@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { desc, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import ResumeItem from "./ResumeItem";
+import { toast } from "sonner";
 
 const ResumeList = () => {
   const { user } = useUser();
@@ -21,10 +22,13 @@ const ResumeList = () => {
           eq(UserResume.userEmail, user?.primaryEmailAddress?.emailAddress)
         ) // to make sure that the fetched resumes are only those resumes created by the current logged in user
         .orderBy(desc(UserResume.id));
-      console.log("List of Resumes: ", resp);
       setUserResumeList(resp);
     } catch (error) {
-      console.log("Error while fetching resume list: ", error);
+      toast(
+        <p className="text-xs text-red-500">
+          Internal error occured while fetching your resume
+        </p>
+      );
     }
   };
 

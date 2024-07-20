@@ -39,13 +39,7 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
       ...prevState,
       [name]: value,
     }));
-
-    console.log(formData);
   };
-
-  // useEffect(() => {
-  //   console.log(formData);
-  // }, []);
 
   const onSave = async (e) => {
     e.preventDefault();
@@ -88,24 +82,20 @@ const PersonalDetail = ({ resumeId, enableNext }) => {
         .set({ website: formData?.website })
         .where(eq(UserResume?.resumeId, resumeId));
 
-      console.log(
-        "updated resume: ",
-        firstNameUpd,
-        lastNameUpd,
-        addressUpd,
-        jobTitleUpd,
-        phoneUpd,
-        emailUpd,
-        websiteUpd
-      );
-
       setLoading(false);
       enableNext(true); // if the form is saved, then enable the next button
-      toast("Personal Details Updated Successfully");
+      toast(
+        <p className="text-xs text-green-500">
+          Personal details saved successfully
+        </p>
+      );
     } catch (error) {
-      toast("Error occured while updating personal details");
+      toast(
+        <p className="text-xs text-red-500">
+          Error occured while saving personal details
+        </p>
+      );
       setLoading(false);
-      console.log("Error updating resume: ", error);
     }
   };
 

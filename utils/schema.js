@@ -18,4 +18,5 @@ export const UserResume = pgTable("userResume", {
   summary: varchar("summary", { length: 1000 }),
   experience: text("experience"),
   education: text("education"),
+  skills: text("skills"),
 });

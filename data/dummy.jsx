@@ -83,22 +83,22 @@ export const dummy = {
     {
       id: 1,
       name: "Nextjs",
-      rating: 80,
+      rating: 3,
     },
     {
       id: 2,
       name: ".NetCore",
-      rating: 80,
+      rating: 3,
     },
     {
       id: 3,
       name: "SpringBoot",
-      rating: 90,
+      rating: 4,
     },
     {
       id: 4,
       name: "PHP",
-      rating: 60,
+      rating: 2,
     },
   ],
   //   softSkills: [

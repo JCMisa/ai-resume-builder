@@ -62,17 +62,27 @@ const Education = ({ resumeId, enableNext }) => {
         .where(eq(UserResume.resumeId, resumeId));
 
       if (resp) {
-        toast("Education details saved successfully");
-        console.log(resp);
+        toast(
+          <p className="text-xs text-green-500">
+            Education details saved successfully
+          </p>
+        );
         setLoading(false);
         enableNext(true);
       } else {
-        toast("Failed to save education details");
+        toast(
+          <p className="text-xs text-red-500">
+            Failed to save education details
+          </p>
+        );
         setLoading(false);
       }
     } catch (error) {
-      toast("Error occurred while updating education details");
-      console.log("Education error: ", error);
+      toast(
+        <p className="text-xs text-red-500">
+          Internal error occured while saving education details
+        </p>
+      );
       setLoading(false);
     } finally {
       setLoading(false);
