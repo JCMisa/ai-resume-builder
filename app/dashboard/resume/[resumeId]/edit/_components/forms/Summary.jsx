@@ -108,6 +108,7 @@ const Summary = ({ resumeId, enableNext }) => {
             </Button>
           </div>
           <Textarea
+            defaultValue={resumeInfo?.summary}
             className="mt-5 border-gray-500 summary-textarea"
             required
             onChange={(e) => setSummaryInput(e.target.value)}

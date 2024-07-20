@@ -28,15 +28,17 @@ const FormSection = ({ resumeId }) => {
               <ArrowLeft />{" "}
             </Button>
           )}
-          <Button
-            disabled={!enableNext} // only enable next button if the form is saved
-            className="flex gap-2"
-            size="sm"
-            onClick={() => setActiveFormIndex(activeFormIndex + 1)}
-          >
-            {" "}
-            Next <ArrowRight />{" "}
-          </Button>
+          {activeFormIndex < 5 && (
+            <Button
+              disabled={!enableNext} // only enable next button if the form is saved
+              className="flex gap-2"
+              size="sm"
+              onClick={() => setActiveFormIndex(activeFormIndex + 1)}
+            >
+              {" "}
+              Next <ArrowRight />{" "}
+            </Button>
+          )}
         </div>
       </div>
       {/* Personal Detail */}
