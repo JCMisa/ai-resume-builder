@@ -102,7 +102,6 @@ const Skills = ({ resumeId, enableNext }) => {
                 />
               </div>
 
-              {/* for star rating */}
               <Rating
                 style={{ maxWidth: 120 }}
                 value={item.rating}

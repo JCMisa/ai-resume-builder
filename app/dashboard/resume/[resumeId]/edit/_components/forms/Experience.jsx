@@ -188,7 +188,6 @@ const Experience = ({ resumeId, enableNext }) => {
                   />
                 </div>
 
-                {/* work summary */}
                 <div className="col-span-2">
                   <RichTextEditor
                     className="summary-textarea"

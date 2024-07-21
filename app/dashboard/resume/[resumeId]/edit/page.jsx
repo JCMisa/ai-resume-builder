@@ -9,24 +9,36 @@ import { toast } from "sonner";
 import { db } from "@/utils/db";
 import { UserResume } from "@/utils/schema";
 import { desc, eq } from "drizzle-orm";
+import SkillsPreview from "./_components/preview/SkillsPreview";
 
 const EditResume = ({ params }) => {
-  const [resumeInfo, setResumeInfo] = useState(dummy);
+  const [resumeInfo, setResumeInfo] = useState();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    //setResumeInfo(dummy);
+    getResumeInfo();
+  }, [params]);
 
   const getResumeInfo = async () => {
     const resp = await db
       .select()
       .from(UserResume)
-      .where(eq(UserResume.resumeId, params.resumeId));
+      .where(eq(UserResume?.resumeId, params.resumeId));
 
-    console.log("page resume info: ", resp[0]); // get the resp which is the record in the database
+    if (resp) {
+      setResumeInfo(resp[0]);
+      console.log("resume info state: ", resumeInfo);
+    }
+
+    // console.log("page resume info: ", resp[0]); // get the resp which is the record in the database
+    // console.log("page resume skills: ", resp[0].skills); // get the stringified array skills property
+    // const parsedSkills = JSON.parse(resp[0].skills); // parce the skills stringified version
+    // console.log("page resume skills parced: ", parsedSkills); // it will log the parced skills
+    // console.log(
+    //   ("page resume skills parced index 0 name: ", parsedSkills[0].name) // it should return spring boot
+    // );
   };
-
-  useEffect(() => {
-    setResumeInfo(dummy);
-    resumeInfo && getResumeInfo();
-  }, []);
 
   return (
     <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>

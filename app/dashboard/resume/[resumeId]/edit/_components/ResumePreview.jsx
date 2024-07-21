@@ -11,6 +11,9 @@ import EducationPreview from "./preview/EducationPreview";
 const ResumePreview = () => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
+  // const skillsParced = JSON.parse(resumeInfo?.skills);
+  console.log("resume preview: ", resumeInfo);
+
   return (
     <div
       className="shadow-lg h-full p-14 border-t-[20px] min-w-[70%]"
