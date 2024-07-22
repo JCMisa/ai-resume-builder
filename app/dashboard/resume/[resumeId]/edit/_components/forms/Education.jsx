@@ -26,6 +26,10 @@ const Education = ({ resumeId, enableNext }) => {
   const [loading, setLoading] = useState(false);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
+  useEffect(() => {
+    resumeInfo && setEducationalList(JSON.parse(resumeInfo?.education));
+  }, []);
+
   const handleChange = (event, index) => {
     const newEntries = educationalList.slice(); // creates a shallow copy of the educationList array
     const { name, value } = event.target;
@@ -113,6 +117,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div className="col-span-2">
                   <label className="text-xs font-bold">University Name</label>
                   <Input
+                    defaultValue={item?.universityName}
                     name="universityName"
                     onChange={(event) => handleChange(event, index)}
                     className="border-gray-500"
@@ -122,6 +127,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Degree</label>
                   <Input
+                    defaultValue={item?.degree}
                     name="degree"
                     onChange={(event) => handleChange(event, index)}
                     className="border-gray-500"
@@ -131,6 +137,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Major</label>
                   <Input
+                    defaultValue={item?.major}
                     name="major"
                     onChange={(event) => handleChange(event, index)}
                     className="border-gray-500"
@@ -140,6 +147,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Start Date</label>
                   <Input
+                    defaultValue={item?.startDate}
                     type="date"
                     name="startDate"
                     onChange={(event) => handleChange(event, index)}
@@ -150,6 +158,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">End Date</label>
                   <Input
+                    defaultValue={item?.endDate}
                     type="date"
                     name="endDate"
                     onChange={(event) => handleChange(event, index)}
@@ -160,6 +169,7 @@ const Education = ({ resumeId, enableNext }) => {
                 <div className="col-span-2">
                   <label className="text-xs font-bold">Description</label>
                   <Textarea
+                    defaultValue={item?.description}
                     name="description"
                     onChange={(event) => handleChange(event, index)}
                     className="border-gray-500 summary-textarea"

@@ -23,10 +23,10 @@ import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 import { toast } from "sonner";
 import { chatSession } from "@/utils/GeminiAiModal";
 
-const RichTextEditor = ({ onRichTextEditorChange, index }) => {
+const RichTextEditor = ({ onRichTextEditorChange, index, defaultValue }) => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(defaultValue);
   const [aiLoading, setAiLoading] = useState(false);
 
   const generateSummaryFromAi = async () => {

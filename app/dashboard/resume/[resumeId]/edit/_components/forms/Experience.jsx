@@ -29,6 +29,10 @@ const Experience = ({ resumeId, enableNext }) => {
 
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
+  useEffect(() => {
+    resumeInfo && setExperienceList(JSON.parse(resumeInfo?.experience)); // used to populate the default value of each input field
+  }, []);
+
   const handleChange = (index, event) => {
     const newEntries = experienceList.slice(); // creates a shallow copy of the experienceList array
     const { name, value } = event.target;
@@ -109,10 +113,10 @@ const Experience = ({ resumeId, enableNext }) => {
     }
   };
 
-  const objectOfObjects = experienceList.reduce((acc, object) => {
-    acc[object.title] = object; // Use the desired property (e.g., "id") as the key
-    return acc;
-  }, {});
+  // const objectOfObjects = experienceList.reduce((acc, object) => {
+  //   acc[object.title] = object; // Use the desired property (e.g., "id") as the key
+  //   return acc;
+  // }, {});
 
   return (
     <div>
@@ -127,6 +131,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Position Title</label>
                   <Input
+                    defaultValue={item?.title}
                     name="title"
                     onChange={(e) => handleChange(index, e)}
                     className="border-gray-500"
@@ -136,6 +141,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Company Name</label>
                   <Input
+                    defaultValue={item?.companyName}
                     name="companyName"
                     onChange={(e) => handleChange(index, e)}
                     className="border-gray-500"
@@ -145,6 +151,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">City</label>
                   <Input
+                    defaultValue={item?.city}
                     name="city"
                     onChange={(e) => handleChange(index, e)}
                     className="border-gray-500"
@@ -154,6 +161,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">State/Province</label>
                   <Input
+                    defaultValue={item?.state}
                     name="state"
                     onChange={(e) => handleChange(index, e)}
                     className="border-gray-500"
@@ -163,6 +171,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">Start Date</label>
                   <Input
+                    defaultValue={item?.startDate}
                     name="startDate"
                     type="date"
                     onChange={(e) => handleChange(index, e)}
@@ -173,6 +182,7 @@ const Experience = ({ resumeId, enableNext }) => {
                 <div>
                   <label className="text-xs font-bold">End Date</label>
                   <Input
+                    defaultValue={item?.endDate}
                     name="endDate"
                     type="date"
                     onChange={(e) => handleChange(index, e)}
@@ -182,6 +192,7 @@ const Experience = ({ resumeId, enableNext }) => {
 
                 <div className="col-span-2">
                   <RichTextEditor
+                    defaultValue={item?.workSummary}
                     className="summary-textarea"
                     index={index}
                     onRichTextEditorChange={(event) =>

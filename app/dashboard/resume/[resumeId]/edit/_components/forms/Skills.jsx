@@ -22,6 +22,10 @@ const Skills = ({ resumeId, enableNext }) => {
     },
   ]);
 
+  useEffect(() => {
+    resumeInfo && setSkillsList(JSON.parse(resumeInfo?.skills));
+  }, []);
+
   const handleChange = (index, name, value) => {
     const newEntries = skillsList.slice();
     newEntries[index][name] = value;
@@ -100,6 +104,7 @@ const Skills = ({ resumeId, enableNext }) => {
               <div>
                 <label className="text-xs font-bold">Skill</label>
                 <Input
+                  defaultValue={item?.name}
                   name="name"
                   onChange={(e) => handleChange(index, "name", e.target.value)}
                   className="border-gray-500 w-full"
@@ -107,6 +112,7 @@ const Skills = ({ resumeId, enableNext }) => {
               </div>
 
               <Rating
+                defaultValue={item?.rating}
                 style={{ maxWidth: 120 }}
                 value={item.rating}
                 onChange={(v) => handleChange(index, "rating", v)}
