@@ -1,12 +1,21 @@
 "use client";
 
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Gallery from "./components/Gallery";
+import Hero from "./components/Hero";
+import HowItWorks from "./components/HowItWorks";
 import Header from "./dashboard/_components/Header";
 
 export default function Home() {
   return (
     <div>
       <Header />
-      <h2>Hello World</h2>
+      <Hero />
+      <Gallery />
+      <HowItWorks />
+      <Contact />
+      <Footer />
     </div>
   );
 }

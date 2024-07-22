@@ -26,9 +26,9 @@ const Education = ({ resumeId, enableNext }) => {
   const [loading, setLoading] = useState(false);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
-  useEffect(() => {
-    resumeInfo && setEducationalList(JSON.parse(resumeInfo?.education));
-  }, []);
+  // useEffect(() => {
+  //   resumeInfo && setEducationalList(JSON.parse(resumeInfo?.education));
+  // }, []);
 
   const handleChange = (event, index) => {
     const newEntries = educationalList.slice(); // creates a shallow copy of the educationList array

@@ -29,9 +29,9 @@ const Experience = ({ resumeId, enableNext }) => {
 
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
-  useEffect(() => {
-    resumeInfo && setExperienceList(JSON.parse(resumeInfo?.experience)); // used to populate the default value of each input field
-  }, []);
+  // useEffect(() => {
+  //   resumeInfo && setExperienceList(JSON.parse(resumeInfo?.experience)); // used to populate the default value of each input field
+  // }, [resumeInfo]);
 
   const handleChange = (index, event) => {
     const newEntries = experienceList.slice(); // creates a shallow copy of the experienceList array

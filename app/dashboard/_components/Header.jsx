@@ -7,10 +7,12 @@ import Link from "next/link";
 const Header = () => {
   return (
     <div className="p-3 px-5 flex justify-between shadow-md">
-      <div className="flex items-center gap-2">
-        <img src="/logo.svg" alt="logo" width={40} height={40} />
-        <p className="logo-text text-primary font-bold text-lg">ReUp</p>
-      </div>
+      <Link href={"/"}>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <img src="/logo.svg" alt="logo" width={40} height={40} />
+          <p className="logo-text text-primary font-bold text-lg">ReUp</p>
+        </div>
+      </Link>
 
       <div className="flex gap-4 items-center">
         <Link href={"/dashboard"}>

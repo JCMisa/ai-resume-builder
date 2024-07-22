@@ -119,6 +119,7 @@ body::-webkit-scrollbar-thumb {
 
   #print-area {
     display: block;
+    margin-top: -3rem;
   }
 
   /* this will fit the printed resume */

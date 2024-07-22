@@ -22,9 +22,9 @@ const Skills = ({ resumeId, enableNext }) => {
     },
   ]);
 
-  useEffect(() => {
-    resumeInfo && setSkillsList(JSON.parse(resumeInfo?.skills));
-  }, []);
+  // useEffect(() => {
+  //   resumeInfo && setSkillsList(JSON.parse(resumeInfo?.skills));
+  // }, []);
 
   const handleChange = (index, name, value) => {
     const newEntries = skillsList.slice();

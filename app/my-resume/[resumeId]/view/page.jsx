@@ -58,7 +58,6 @@ const ViewResume = ({ params }) => {
     <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div id="no-print">
         <Header />
-
         <div className="my-10 mx-10 md:mx-20 lg:mx-36">
           <div className="flex flex-col items-center justify-center">
             <img src="/success.gif" alt="success" className="text-center" />
@@ -95,7 +94,9 @@ const ViewResume = ({ params }) => {
         </div>
       </div>
 
-      <ResumePreview />
+      <div id="print-area">
+        <ResumePreview />
+      </div>
     </ResumeInfoContext.Provider>
   );
 };
