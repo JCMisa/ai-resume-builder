@@ -19,4 +19,5 @@ export const UserResume = pgTable("userResume", {
   experience: text("experience"),
   education: text("education"),
   skills: text("skills"),
+  themeColor: text("themeColor"),
 });

@@ -38,7 +38,7 @@ const ResumePreview = () => {
         style={{ borderColor: resumeInfo?.themeColor }}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 gap-10">
         <div className="flex flex-col gap-10 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {/* Contact Details */}

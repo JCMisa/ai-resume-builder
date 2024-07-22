@@ -7,10 +7,13 @@ import Experience from "./forms/Experience";
 import Education from "./forms/Education";
 import Skills from "./forms/Skills";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import ThemeColor from "@/components/custom/ThemeColor";
 
 const FormSection = ({ resumeId }) => {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
   const [enableNext, setEnableNext] = useState(true);
+  const router = useRouter();
 
   return (
     <div className="min-w-[30%]">
@@ -21,13 +24,8 @@ const FormSection = ({ resumeId }) => {
               <Home />
             </Button>
           </Link>
-          <Button
-            size="sm"
-            className="flex gap-2 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 hover:shadow-md shadow-primary hover:scale-105 transition-all cursor-pointer"
-          >
-            <LayoutGrid />
-            Theme
-          </Button>
+
+          <ThemeColor resumeId={resumeId} />
         </div>
         <div className="flex gap-2">
           {activeFormIndex > 1 && (
@@ -81,7 +79,9 @@ const FormSection = ({ resumeId }) => {
       ) : null}
 
       {/* download and share */}
-      {activeFormIndex === 6 ? <>Share</> : null}
+      {activeFormIndex === 6
+        ? router.push(`/my-resume/${resumeId}/view`)
+        : null}
     </div>
   );
 };

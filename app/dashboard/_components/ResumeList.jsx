@@ -40,7 +40,11 @@ const ResumeList = () => {
     <div className="flex flex-col sm:flex-row gap-5">
       {userResumeList &&
         userResumeList.map((resume) => (
-          <ResumeItem key={resume?.id} resume={resume} />
+          <ResumeItem
+            key={resume?.id}
+            resume={resume}
+            refreshData={getResumeList}
+          />
         ))}
     </div>
   );

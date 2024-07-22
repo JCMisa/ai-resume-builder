@@ -111,3 +111,26 @@ body::-webkit-scrollbar-thumb {
   list-style: decimal;
   padding-left: 2em;
 }
+
+@media print {
+  #no-print {
+    display: none;
+  }
+
+  #print-area {
+    display: block;
+  }
+
+  /* this will fit the printed resume */
+  body {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+/* this will fit the printed resume */
+@page {
+  size: auto;
+  margin: 0mm;
+}
