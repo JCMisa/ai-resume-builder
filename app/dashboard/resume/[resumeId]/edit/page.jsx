@@ -10,35 +10,58 @@ import { db } from "@/utils/db";
 import { UserResume } from "@/utils/schema";
 import { desc, eq } from "drizzle-orm";
 import SkillsPreview from "./_components/preview/SkillsPreview";
+import { useUser } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 const EditResume = ({ params }) => {
-  const [resumeInfo, setResumeInfo] = useState();
-  const [loading, setLoading] = useState(false);
+  const [resumeInfo, setResumeInfo] = useState(null);
+
+  const getData = async () => {
+    try {
+      const resp = await db
+        .select()
+        .from(UserResume)
+        .where(eq(UserResume?.resumeId, params.resumeId));
+      setResumeInfo(resp[0]);
+      toast(
+        <p className="text-green-500 text-xs font-bold">
+          Resume information fetched successfully
+        </p>
+      );
+    } catch (error) {
+      toast(
+        <p className="text-red-500 text-xs font-bold">
+          Internal error occured while fetching resume information
+        </p>
+      );
+    }
+  };
 
   useEffect(() => {
-    //setResumeInfo(dummy);
-    getResumeInfo();
-  }, [params]);
+    const fetchData = async () => {
+      try {
+        const resp = await db
+          .select()
+          .from(UserResume)
+          .where(eq(UserResume?.resumeId, params.resumeId));
+        setResumeInfo(resp[0]);
+        toast(
+          <p className="text-green-500 text-xs font-bold">
+            Resume information fetched successfully
+          </p>
+        );
+      } catch (error) {
+        toast(
+          <p className="text-red-500 text-xs font-bold">
+            Internal error occurred while fetching resume information
+          </p>
+        );
+      }
+    };
 
-  const getResumeInfo = async () => {
-    const resp = await db
-      .select()
-      .from(UserResume)
-      .where(eq(UserResume?.resumeId, params.resumeId));
-
-    if (resp) {
-      setResumeInfo(resp[0]);
-      console.log("resume info state: ", resumeInfo);
-    }
-
-    // console.log("page resume info: ", resp[0]); // get the resp which is the record in the database
-    // console.log("page resume skills: ", resp[0].skills); // get the stringified array skills property
-    // const parsedSkills = JSON.parse(resp[0].skills); // parce the skills stringified version
-    // console.log("page resume skills parced: ", parsedSkills); // it will log the parced skills
-    // console.log(
-    //   ("page resume skills parced index 0 name: ", parsedSkills[0].name) // it should return spring boot
-    // );
-  };
+    fetchData();
+    getData();
+  }, [params.resumeId]);
 
   return (
     <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
@@ -49,7 +72,9 @@ const EditResume = ({ params }) => {
         {/* preview section */}
         <ResumePreview />
 
-        {/* <button onClick={getUserResume}>show user resume</button> */}
+        <Button onClick={getData} className="fixed bottom-3 left-3">
+          Show Changes
+        </Button>
       </div>
     </ResumeInfoContext.Provider>
   );

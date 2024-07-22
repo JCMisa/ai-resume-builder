@@ -11,24 +11,25 @@ import EducationPreview from "./preview/EducationPreview";
 const ResumePreview = () => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
 
-  // const skillsParced = JSON.parse(resumeInfo?.skills);
-  console.log("resume preview: ", resumeInfo);
-
   return (
     <div
       className="shadow-lg h-full p-14 border-t-[20px] min-w-[70%]"
-      style={{ borderColor: resumeInfo?.themeColor }}
+      style={{
+        borderColor: resumeInfo?.themeColor,
+      }}
     >
       {/* name and role */}
       <h2
         className="text-[2rem] text-center"
         style={{ color: resumeInfo?.themeColor }}
       >
-        {resumeInfo?.firstName.toUpperCase()}{" "}
-        {resumeInfo?.lastName.toUpperCase()}
+        {resumeInfo?.firstName !== null ? resumeInfo?.firstName : "JOHN CARLO"}{" "}
+        {resumeInfo?.lastName !== null ? resumeInfo?.lastName : "MISA"}
       </h2>
       <h2 className="text-center text-sm text-gray-600">
-        {resumeInfo?.jobTitle.toUpperCase()}
+        {resumeInfo?.jobTitle !== null
+          ? resumeInfo?.jobTitle
+          : "FULL STACK DEVELOPER"}
       </h2>
 
       {/* solid line break */}

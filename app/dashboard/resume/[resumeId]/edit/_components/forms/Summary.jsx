@@ -28,11 +28,10 @@ const Summary = ({ resumeId, enableNext }) => {
 
   const generateSummaryFromAi = async () => {
     setAiLoading(true);
-    const prompt = `Job Title: ${
-      resumeInfo?.jobTitle
-    }, Skills: ${resumeInfo?.skills.map(
-      (skill) => skill.name
-    )}, based on the given job title and skills please generate 3 JSON objects, representing personal summaries for a resume, each with "experienceLevel" (Fresher, Mid-Level, Experienced) and "summary" (concise impactful 4 to 6 sentences summary text) properties`;
+    const prompt = `Job Title: ${resumeInfo?.jobTitle}, Skills: ${
+      Array.isArray(resumeInfo?.skills) &&
+      resumeInfo?.skills.map((skill) => skill.name)
+    }, based on the given job title and skills please generate 3 JSON objects, representing personal summaries for a resume, each with "experienceLevel" (Fresher, Mid-Level, Experienced) and "summary" (concise impactful 4 to 6 sentences summary text) properties`;
 
     const result = await chatSession.sendMessage(prompt);
 
@@ -58,7 +57,7 @@ const Summary = ({ resumeId, enableNext }) => {
             Personal summary saved successfully
           </p>
         );
-        enableNext(true);
+        enableNext(true); // if the form is saved, then enable the next button
         setLoading(false);
       } else {
         toast(

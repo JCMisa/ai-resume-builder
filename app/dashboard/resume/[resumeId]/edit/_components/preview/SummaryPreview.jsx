@@ -1,6 +1,7 @@
 import React from "react";
 
 const SummaryPreview = ({ resumeInfo }) => {
+  console.log("summary preview: ", resumeInfo);
   return (
     <div className="flex justify-start text-gray-600">
       <div>

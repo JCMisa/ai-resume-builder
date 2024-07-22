@@ -69,7 +69,7 @@ const Education = ({ resumeId, enableNext }) => {
           </p>
         );
         setLoading(false);
-        enableNext(true);
+        enableNext(true); // if the form is saved, then enable the next button
       } else {
         toast(
           <p className="text-xs text-red-500">
@@ -89,13 +89,16 @@ const Education = ({ resumeId, enableNext }) => {
       setLoading(false);
     }
   };
+  // -------------------------------------------------------------
 
-  useEffect(() => {
-    setResumeInfo({
-      ...resumeInfo,
-      education: educationalList,
-    });
-  }, [educationalList]);
+  // useEffect(() => {
+  //   setResumeInfo({
+  //     ...resumeInfo,
+  //     education: educationalList,
+  //   });
+  // }, [educationalList]);
+
+  // -------------------------------------------------------------
 
   return (
     <div>

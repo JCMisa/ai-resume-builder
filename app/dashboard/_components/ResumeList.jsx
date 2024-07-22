@@ -37,7 +37,7 @@ const ResumeList = () => {
   }, [user]); // evertime user information change, the getResumeList will execute
 
   return (
-    <div>
+    <div className="flex flex-col sm:flex-row gap-5">
       {userResumeList &&
         userResumeList.map((resume) => (
           <ResumeItem key={resume?.id} resume={resume} />

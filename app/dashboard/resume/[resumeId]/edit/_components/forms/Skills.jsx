@@ -56,7 +56,7 @@ const Skills = ({ resumeId, enableNext }) => {
         toast(
           <p className="text-xs text-green-500">Skills saved successfully</p>
         );
-        enableNext(true);
+        enableNext(true); // if the form is saved, then enable the next button
         setLoading(false);
       } else {
         toast(<p className="text-xs text-red-500">Failed to save skills</p>);
@@ -74,12 +74,16 @@ const Skills = ({ resumeId, enableNext }) => {
     }
   };
 
-  useEffect(() => {
-    setResumeInfo({
-      ...resumeInfo,
-      skills: skillsList,
-    });
-  }, [skillsList]);
+  //   ----------------------------------------------------------------
+
+  // useEffect(() => {
+  //   setResumeInfo({
+  //     ...resumeInfo,
+  //     skills: skillsList,
+  //   });
+  // }, [skillsList]);
+
+  //   ----------------------------------------------------------------
 
   return (
     <div>

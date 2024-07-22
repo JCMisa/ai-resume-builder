@@ -7,6 +7,7 @@ import React from "react";
 
 const ResumeItem = ({ resume }) => {
   const { user } = useUser();
+
   return (
     <Link href={`/dashboard/resume/${resume.resumeId}/edit`}>
       <div
@@ -15,7 +16,7 @@ const ResumeItem = ({ resume }) => {
       >
         <p className="text-xs absolute top-3 right-3 w-38 bg-white/50 backdrop-blur-sm backdrop-filter overflow-hidden rounded-lg px-1 py-2">
           <span className="logo-text font-bold">
-            {resume.userName.toString().slice(0, 12)}...
+            {resume.firstName.toString().slice(0, 12)}...
           </span>
           's resume
         </p>

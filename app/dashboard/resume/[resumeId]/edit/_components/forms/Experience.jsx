@@ -65,20 +65,19 @@ const Experience = ({ resumeId, enableNext }) => {
 
   //   ----------------------------------------------------------------
 
-  useEffect(() => {
-    setResumeInfo({
-      ...resumeInfo,
-      experience: experienceList,
-    });
-  }, [experienceList]);
+  // useEffect(() => {
+  //   setResumeInfo({
+  //     ...resumeInfo,
+  //     experience: experienceList,
+  //   });
+  // }, [experienceList]);
 
   //   ----------------------------------------------------------------
 
   const onSave = async () => {
     setLoading(true);
-
+    const stringExperience = JSON.stringify(experienceList);
     try {
-      const stringExperience = JSON.stringify(experienceList);
       const resp = await db
         .update(UserResume)
         .set({ experience: stringExperience })
@@ -90,7 +89,7 @@ const Experience = ({ resumeId, enableNext }) => {
             Experiences saved successfully
           </p>
         );
-        enableNext(true);
+        enableNext(true); // if the form is saved, then enable the next button
         setLoading(false);
       } else {
         toast(
@@ -114,13 +113,6 @@ const Experience = ({ resumeId, enableNext }) => {
     acc[object.title] = object; // Use the desired property (e.g., "id") as the key
     return acc;
   }, {});
-
-  // const show = () => {
-  //   // const stringExperience = JSON.stringify(experienceList)
-  //   //   .replace("[", "'[")
-  //   //   .replace("]", "]'");
-  //   console.log(experienceList);
-  // };
 
   return (
     <div>
@@ -226,7 +218,6 @@ const Experience = ({ resumeId, enableNext }) => {
             {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
           </Button>
         </div>
-        {/* <Button onClick={show}>Show experienceList</Button> */}
       </div>
     </div>
   );
