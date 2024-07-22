@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PersonalDetail from "./forms/PersonalDetail";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
+import { ArrowLeft, ArrowRight, Home, LayoutGrid } from "lucide-react";
 import Summary from "./forms/Summary";
 import Experience from "./forms/Experience";
 import Education from "./forms/Education";
 import Skills from "./forms/Skills";
+import Link from "next/link";
 
 const FormSection = ({ resumeId }) => {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
@@ -14,10 +15,20 @@ const FormSection = ({ resumeId }) => {
   return (
     <div className="min-w-[30%]">
       <div className="flex justify-between items-center">
-        <Button variant="outline" size="sm" className="flex gap-2">
-          {" "}
-          <LayoutGrid /> Theme{" "}
-        </Button>
+        <div className="flex gap-5">
+          <Link href={"/dashboard"}>
+            <Button variant="outline" size="sm" className="">
+              <Home />
+            </Button>
+          </Link>
+          <Button
+            size="sm"
+            className="flex gap-2 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 hover:shadow-md shadow-primary hover:scale-105 transition-all cursor-pointer"
+          >
+            <LayoutGrid />
+            Theme
+          </Button>
+        </div>
         <div className="flex gap-2">
           {activeFormIndex > 1 && (
             <Button
@@ -28,7 +39,7 @@ const FormSection = ({ resumeId }) => {
               <ArrowLeft />{" "}
             </Button>
           )}
-          {activeFormIndex < 5 && (
+          {activeFormIndex < 6 && (
             <Button
               disabled={!enableNext} // only enable next button if the form is saved
               className="flex gap-2"
@@ -68,6 +79,9 @@ const FormSection = ({ resumeId }) => {
       {activeFormIndex === 5 ? (
         <Skills resumeId={resumeId} enableNext={(v) => setEnableNext(v)} />
       ) : null}
+
+      {/* download and share */}
+      {activeFormIndex === 6 ? <>Share</> : null}
     </div>
   );
 };
